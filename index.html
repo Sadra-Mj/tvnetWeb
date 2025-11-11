@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/tabLogo.png" type="image/x-icon">
+    <title>TV NET</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Konkhmer+Sleokchher&family=Koulen&display=swap"
+        rel="stylesheet">
+    <!-- HLS.js Library for M3U playback -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+</head>
+
+<body>
+
+    <div class="hero-section">
+        <!-- Background Carousel Container -->
+        <div class="carousel-container">
+            <div class="carousel-slide active"
+                style="background-image: url('assets/carousel/1.jpg');">
+            </div>
+            <div class="carousel-slide"
+                style="background-image: url('assets/carousel/2.jpg');">
+            </div>
+            <div class="carousel-slide"
+                style="background-image: url('assets/carousel/3.jpeg');">
+            </div>
+            <div class="carousel-slide"
+                style="background-image: url('assets/carousel/4.jpg');">
+            </div>
+            <div class="carousel-slide"
+                style="background-image: url('assets/carousel/5.jpg');">
+            </div>
+            <div class="carousel-slide"
+                style="background-image: url('assets/carousel/6.jpeg');">
+            </div>
+        </div>
+
+        <!-- Header and Navigation -->
+        <header>
+            <nav>
+                <a href="#" class="logo">
+                    <svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 954.56 192.73">
+                        <defs>
+                            <style>
+                                .logo-cls-1 {
+                                    fill: #ffffff;
+                                }
+
+                                .logo-cls-2 {
+                                    fill: var(--primary-color);
+                                }
+                            </style>
+                        </defs>
+                        <g id="Layer_2-2" data-name="Layer 2">
+                            <g>
+                                <path class="logo-cls-1"
+                                    d="M661.56,192.73h-46.83l-78.32-118.57v118.57h-46.83V.5h46.83l78.32,119.12V.5h46.83v192.23Z" />
+                                <path class="logo-cls-1"
+                                    d="M728.65,38.02v38.88h62.71v36.15h-62.71v42.17h70.92v37.52h-117.75V.5h117.75v37.52h-70.92Z" />
+                                <path class="logo-cls-1" d="M954.56.5v37.52h-50.93v154.72h-46.83V38.02h-50.93V.5h148.69Z" />
+                            </g>
+                            <g>
+                                <path class="logo-cls-2"
+                                    d="M0,48.62L36.62,0h162.95c16.68,0,32.33,8.08,42,21.68l71.31,100.33c1.22,1.72,3.79,1.71,5-.02L403.38,0h69.23l-120.53,173.84c-17.25,24.88-53.91,25.26-71.67.74l-81.51-112.53c-6.2-8.56-16.14-13.63-26.71-13.62l-172.19.19Z" />
+                                <rect class="logo-cls-2" x="87" y="64.92" width="61.7" height="127.81" />
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#About">About</a></li>
+                    <li><a href="./channelList">Channel List</a></li>
+                    <li><a href="#Subscribe">Subscribe</a></li>
+                    <li><a href="#Apps">Apps</a></li>
+                    <li><a href="#Contact">Contact Us</a></li>
+                    <!-- Button for Mobile View -->
+                    <li class="mobile-only"><a href="https://t.me/tvnetus" class="btn-primary">Be a reseller</a></li>
+                </ul>
+                <!-- Button for Desktop View -->
+                <a href="https://t.me/tvnetus" class="btn-primary desktop-only">Be a reseller</a>
+                <!-- Mobile Menu Toggle Button -->
+                <div class="menu-toggle">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Main Content Area -->
+        <main>
+            <!-- Carousel Controls -->
+            <div class="carousel-controls">
+                <div id="play-pause-btn" class="control-btn">
+                    <svg class="pause-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <rect x="6" y="4" width="4" height="16"></rect>
+                        <rect x="14" y="4" width="4" height="16"></rect>
+                    </svg>
+                    <svg class="play-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                </div>
+                <!-- Container for navigation dots -->
+                <div id="carousel-dots"></div>
+            </div>
+
+            <!-- Support Button -->
+            <a href="https://t.me/tvnetSupport" class="support-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m22 2-7 20-4-9-9-4Z" />
+                    <path d="m22 2-11 11" />
+                </svg>
+                Support
+            </a>
+        </main>
+    </div>
+
+    <!-- About Us Section -->
+    <section class="about-section" id="About">
+        <div class="about-content">
+            <h2>ABOUT US</h2>
+            <h3>Latest Streaming Releases on Netflix, Prime Video, Disney+, and More</h3>
+            <p>TV NET highlights the newest movies, series, and trending shows every week. Discover fresh content on
+                Netflix, Amazon Prime, Hulu, HBO Max, Apple TV+, Disney+, Paramount+, and Peacock. Stay up to date with
+                all major streaming platforms in one place — <a href="#">see what's new this week</a> on TV NET.</p>
+        </div>
+
+        <!-- Scroller for Streaming Service Logos -->
+        <div class="scroller" data-direction="right">
+            <div class="scroller-inner sLogo">
+                <img src="assets/Paramount+_logo.png" alt="Streaming Service 1">
+                <img src="assets/Netflix-Logo1.png" alt="Streaming Service 2">
+                <img src="assets/Apple-TV-logo1.png" alt="Streaming Service 3">
+                <img src="assets/Hulu-logo.png" alt="Streaming Service 4">
+                <img src="assets/HBO_logo.svg1.png" alt="Streaming Service 5">
+                <img src="assets/Disney+-Logo.wine1.png" alt="Streaming Service 6">
+                <img src="assets/2560px-Amazon_Prime_Logo.svg1.png" alt="Streaming Service 7">
+                <img src="assets/Sony_logo.png" alt="Streaming Service 8">
+                <img src="assets/Filimo.png" alt="Streaming Service 9">
+            </div>
+        </div>
+
+        <!-- Scroller for Movie Posters -->
+        <div class="scroller" data-direction="left">
+            <div class="scroller-inner">
+                <img src="assets/Movie_1.png" alt="Movie Poster 1">
+                <img src="assets/Movie_2.png" alt="Movie Poster 2">
+                <img src="assets/Movie_3.png" alt="Movie Poster 3">
+                <img src="assets/Movie_4.png" alt="Movie Poster 4">
+                <img src="assets/Movie_5.png" alt="Movie Poster 5">
+                <img src="assets/Movie_6.png" alt="Movie Poster 6">
+                <img src="assets/Movie_7.png" alt="Movie Poster 7">
+                <img src="assets/Movie_8.png" alt="Movie Poster 8">
+                <img src="assets/Movie_9.png" alt="Movie Poster 9">
+                <img src="assets/Movie_10.png" alt="Movie Poster 10">
+                <img src="assets/Movie_11.png" alt="Movie Poster 11">
+                <img src="assets/Movie_12.png" alt="Movie Poster 12">
+            </div>
+        </div>
+    </section>
+
+    <!-- Watch TV Section -->
+    <section class="watch-tv-section">
+        <div class="watch-tv-content">
+            <div class="bg-tv-frame">
+                <h2>WATCH TV WITHOUT LIMITATION!</h2>
+                <div class="tv-player-container">
+                    <img src="assets/TV.png" alt="TV Frame" class="tv-frame">
+                    <div class="tv-screen">
+                        <video id="video-player" muted autoplay>
+                            <!-- M3U source will be attached by HLS.js -->
+                        </video>
+                        <div class="tv-controls-overlay">
+                            <div class="live-indicator">
+                                <span class="live-dot"></span> LIVE
+                            </div>
+                            <div class="player-buttons">
+                                <button id="volume-btn" class="player-btn">
+                                    <!-- Volume On Icon -->
+                                    <svg class="volume-on" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                                    <!-- Volume Off Icon -->
+                                    <svg class="volume-off" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+                                </button>
+                                <button id="fullscreen-btn" class="player-btn">
+                                    <!-- Fullscreen Icon -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tv-watermark">
+                        <svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 954.56 192.73">
+                            <g id="Layer_2-2" data-name="Layer 2">
+                                <g>
+                                    <path class="logo-cls-1"
+                                        d="M661.56,192.73h-46.83l-78.32-118.57v118.57h-46.83V.5h46.83l78.32,119.12V.5h46.83v192.23Z" />
+                                    <path class="logo-cls-1"
+                                        d="M728.65,38.02v38.88h62.71v36.15h-62.71v42.17h70.92v37.52h-117.75V.5h117.75v37.52h-70.92Z" />
+                                    <path class="logo-cls-1"
+                                        d="M954.56.5v37.52h-50.93v154.72h-46.83V38.02h-50.93V.5h148.69Z" />
+                                </g>
+                                <g>
+                                    <path class="logo-cls-2"
+                                        d="M0,48.62L36.62,0h162.95c16.68,0,32.33,8.08,42,21.68l71.31,100.33c1.22,1.72,3.79,1.71,5-.02L403.38,0h69.23l-120.53,173.84c-17.25,24.88-53.91,25.26-71.67.74l-81.51-112.53c-6.2-8.56-16.14-13.63-26.71-13.62l-172.19.19Z" />
+                                    <rect class="logo-cls-2" x="87" y="64.92" width="61.7" height="127.81" />
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Channel Scroller -->
+    <section class="channel-scroller-section">
+        <div class="scroller channel-scroller" data-direction="right" data-animated="true">
+            <div class="scroller-inner">
+                <img src="assets/Channel/CH_1.png" alt="Channel Logo 1">
+                <img src="assets/Channel/CH_2.png" alt="Channel Logo 2">
+                <img src="assets/Channel/CH_3.png" alt="Channel Logo 3">
+                <img src="assets/Channel/CH_4.png" alt="Channel Logo 4">
+                <img src="assets/Channel/CH_5.png" alt="Channel Logo 5">
+                <img src="assets/Channel/CH_6.png" alt="Channel Logo 6">
+                <img src="assets/Channel/CH_7.png" alt="Channel Logo 7">
+                <img src="assets/Channel/CH_8.png" alt="Channel Logo 8">
+                <img src="assets/Channel/CH_9.png" alt="Channel Logo 9">
+                <img src="assets/Channel/CH_10.png" alt="Channel Logo 10">
+                <img src="assets/Channel/CH_11.png" alt="Channel Logo 11">
+                <img src="assets/Channel/CH_12.png" alt="Channel Logo 12">
+                <img src="assets/Channel/CH_13.png" alt="Channel Logo 13">
+                <img src="assets/Channel/CH_14.png" alt="Channel Logo 14">
+                <img src="assets/Channel/CH_15.png" alt="Channel Logo 15">
+                <img src="assets/Channel/CH_16.png" alt="Channel Logo 16">
+                <img src="assets/Channel/CH_17.png" alt="Channel Logo 17">
+                <img src="assets/Channel/CH_18.png" alt="Channel Logo 18">
+                <img src="assets/Channel/CH_19.png" alt="Channel Logo 19">
+                <img src="assets/Channel/CH_20.png" alt="Channel Logo 20">
+            </div>
+        </div>
+    </section>
+
+    <!-- Scroll-to-Zoom Video Section -->
+    <section class="scroll-zoom-section" id="ChannelList">
+        <div class="scroll-zoom-sticky-container">
+            <div class="scroll-zoom-video-wrapper">
+                <div class="scroll-zoom-video-overlay"></div>
+                <video class="scroll-zoom-video" muted loop playsinline>
+                    <source src="assets/VideoBar_H.265.mov"
+                        type="video/mp4">
+                </video>
+            </div>
+            <!-- Initial content that fades out -->
+            <div class="scroll-zoom-content-initial">
+                <h1>OVER <span class="highlight">41,000</span> LIVE CHANNEL</h1>
+            </div>
+            <!-- New content that fades in -->
+            <div class="scroll-zoom-content-secondary">
+                <div id="info-panel-1" class="info-panel info-panel-cl">
+                    <p class="pre-heading">DISCOVER +41,000 LIVE CHANNELS FOR ALL COUNTRIES!</p>
+                    <h2 class="main-heading">CHANNEL LIST</h2>
+                    <p class="description">Enjoy unlimited entertainment with fast, HD-quality IPTV. Watch live channels,
+                        top sports, and the latest movies anytime, anywhere.</p>
+                    <a href="./channelList" class="btn-discover">Discover <span>&rarr;</span></a>
+                </div>
+                <div id="info-panel-2" class="info-panel">
+                    <h2>You have access to over 35,000 4K, FHD and HD channels in all languages.</h2>
+                    <br>
+                    <a href="https://t.me/tvnetus" class="trial">Try 24h Free Trial</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section" id="Subscribe">
+        <div class="pricing-header">
+            <h2>CHOOSE YOUR FAVORITE PLAN!</h2>
+            <p>All Include Premium Servers</p>
+        </div>
+        <div class="pricing-container">
+            <!-- Plan 1: Monthly -->
+            <div class="pricing-card">
+                <h3>MONTHLY</h3>
+                <p class="price">€9.90</p>
+                <ul>
+                    <li>SD, HD, FHD, 4K & 8K</li>
+                    <li>Full Package</li>
+                    <li>+ 41,000 Live Channel</li>
+                    <li>+ 139,000 Movies</li>
+                    <li>+ 35,000 Series</li>
+                    <li>Adult Content +18 (Optional)</li>
+                    <li>Auto Update (Daily)</li>
+                    <li>Technical Support</li>
+                </ul>
+                <a href="https://t.me/tvnetus" class="btn-subscribe">Subscribe</a>
+            </div>
+            <!-- Plan 2: 3 Months -->
+            <div class="pricing-card">
+                <h3>3 MONTHS</h3>
+                <p class="price">€26.90</p>
+                <ul>
+                    <li>SD, HD, FHD, 4K & 8K</li>
+                    <li>Full Package</li>
+                    <li>+ 41,000 Live Channel</li>
+                    <li>+ 139,000 Movies</li>
+                    <li>+ 35,000 Series</li>
+                    <li>Adult Content +18 (Optional)</li>
+                    <li>Auto Update (Daily)</li>
+                    <li>Technical Support</li>
+                </ul>
+                <a href="https://t.me/tvnetus" class="btn-subscribe">Subscribe</a>
+            </div>
+            <!-- Plan 3: 6 Months (Highlighted) -->
+            <div class="pricing-card">
+                <h3>6 MONTHS</h3>
+                <p class="price">€47.50</p>
+                <ul>
+                    <li>SD, HD, FHD, 4K & 8K</li>
+                    <li>Full Package</li>
+                    <li>+ 41,000 Live Channel</li>
+                    <li>+ 139,000 Movies</li>
+                    <li>+ 35,000 Series</li>
+                    <li>Adult Content +18 (Optional)</li>
+                    <li>Auto Update (Daily)</li>
+                    <li>Technical Support</li>
+                </ul>
+                <a href="https://t.me/tvnetus" class="btn-subscribe">Subscribe</a>
+            </div>
+            <!-- Plan 4: 12 Months -->
+            <div class="pricing-card highlighted">
+                <h3>12 MONTHS</h3>
+                <p class="price">€78.50</p>
+                <ul>
+                    <li>SD, HD, FHD, 4K & 8K</li>
+                    <li>Full Package</li>
+                    <li>+ 41,000 Live Channel</li>
+                    <li>+ 139,000 Movies</li>
+                    <li>+ 35,000 Series</li>
+                    <li>Adult Content +18 (Optional)</li>
+                    <li>Auto Update (Daily)</li>
+                    <li>Technical Support</li>
+                </ul>
+                <a href="https://t.me/tvnetus" class="btn-subscribe">Subscribe</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Apps Section -->
+    <section class="apps-section" id="Apps">
+        <div class="apps-header">
+            <h2>AVAILABLE ON DEVICES BELOW</h2>
+        </div>
+        <div class="apps-tabs">
+            <button class="tab-button active" data-tab="tv">TV</button>
+            <button class="tab-button" data-tab="computer">Computer</button>
+            <button class="tab-button" data-tab="mobile">Mobile</button>
+        </div>
+        
+        <div id="tv" class="apps-tab-content active">
+            <div class="apps-main-container">
+                <div class="apps-main-card">
+                    <div class="apps-sub-container">
+                        <div class="apps-sub-card">
+                            <h4>
+                                <svg class="device-icon-sub" viewBox="0 0 256 150"> <path fill="#34a853" d="M255.285 143.47c-.084-.524-.164-1.042-.251-1.56a128.1 128.1 0 0 0-12.794-38.288a128.8 128.8 0 0 0-23.45-31.86a129.2 129.2 0 0 0-22.713-18.005c.049-.08.09-.168.14-.25c2.582-4.461 5.172-8.917 7.755-13.38l7.576-13.068c1.818-3.126 3.632-6.26 5.438-9.386q.643-1.115 1.023-2.297a11.78 11.78 0 0 0-.36-8.188q-.32-.76-.743-1.472a11.7 11.7 0 0 0-4.08-4.064a11.85 11.85 0 0 0-5.005-1.61a12 12 0 0 0-2.218.02q-.912.094-1.814.33a11.74 11.74 0 0 0-7.154 5.467c-1.814 3.127-3.628 6.26-5.438 9.386l-7.576 13.069c-2.583 4.462-5.173 8.918-7.755 13.38c-.282.487-.567.973-.848 1.467q-.586-.237-1.172-.462c-14.24-5.43-29.688-8.4-45.836-8.4c-.442 0-.879 0-1.324.006c-14.357.143-28.152 2.64-41.022 7.12a119 119 0 0 0-4.42 1.642c-.262-.455-.532-.911-.79-1.367c-2.583-4.462-5.173-8.918-7.755-13.38l-7.576-13.07a3915 3915 0 0 1-5.439-9.386A11.74 11.74 0 0 0 48.5.048a11.7 11.7 0 0 0-5.01 1.612a11.7 11.7 0 0 0-4.077 4.063c-.281.474-.532.967-.742 1.473a11.8 11.8 0 0 0-.365 8.188c.259.786.594 1.554 1.023 2.296a3973 3973 0 0 1 5.439 9.386q3.793 6.535 7.58 13.069c2.582 4.462 5.168 8.918 7.75 13.38c.02.038.046.075.065.112A129 129 0 0 0 45.32 64.38a129.7 129.7 0 0 0-22.2 24.015a128 128 0 0 0-9.34 15.24a128.2 128.2 0 0 0-10.843 28.764a131 131 0 0 0-1.951 9.524c-.087.518-.167 1.042-.247 1.56A125 125 0 0 0 0 149.118h256q-.307-2.837-.734-5.636z" /><path fill="#fff" d="M194.59 113.712c5.122-3.41 5.867-11.3 1.661-17.62c-4.203-6.323-11.763-8.682-16.883-5.273c-5.122 3.41-5.868 11.3-1.662 17.621c4.203 6.322 11.764 8.682 16.883 5.272m-116.071-5.25c4.206-6.321 3.46-14.21-1.662-17.62c-5.123-3.41-12.68-1.05-16.886 5.27c-4.203 6.323-3.458 14.212 1.662 17.622c5.122 3.41 12.683 1.05 16.886-5.272" /></svg>
+                                Android OS
+                            </h4>
+                            <ul>
+                                <li><span>4K Player</span> <a href="https://t.me/tvnetSupport">Learn More</a></li>
+                                <li><span>ibo Player Pro</span> <a href="https://t.me/tvnetSupport">Learn More</a></li>
+                                <li><span>IPTV Smarters Pro</span> <a href="https://t.me/tvnetSupport">Learn More</a></li>
+                            </ul>
+                        </div>
+                         <div class="apps-sub-card">
+                            <h4>
+                                <img class="tizen" src="assets/Tizen-Pinwheel-On-Dark-RGB.png" alt="Tizen Logo">
+                                Tizen
+                            </h4>
+                            <ul>
+                                <li><span>4K Player</span> <a href="https://t.me/tvnetSupport">Learn More</a></li>
+                                <li><span>ibo Player Pro</span> <a href="https://t.me/tvnetSupport">Learn More</a></li>
+                                <li><span>IPTV Smarters Pro</span> <a href="https://t.me/tvnetSupport">Learn More</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="apps-main-card">
+                     <div class="apps-sub-container">
+                        <div class="apps-sub-card">
+                            <h4>
+                                <svg class="device-icon-sub" viewBox="0 0 24 24"><path fill="#e6e6e6" d="M17.05 20.28c-.98.95-2.05.8-3.08.35c-1.09-.46-2.09-.48-3.24 0c-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8c1.18-.24 2.31-.93 3.57-.84c1.51.12 2.65.72 3.4 1.8c-3.12 1.87-2.38 5.98.48 7.13c-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25c.29 2.58-2.34 4.5-3.74 4.25" /></svg>
+                                Apple TV
+                            </h4>
+                            <ul>
+                                <li><span>ZenIPTV Player</span> <a href="https://apps.apple.com/tr/app/zen-iptv-player/id6458223193" target="_blank">Download</a></li>
+                            </ul>
+                        </div>
+                         <div class="apps-sub-card">
+                             <h4>
+                                <svg class="device-icon-sub vidaa" viewBox="0 0 300 300"> <defs> <radialGradient id="vidaa-grad" cx="7.47" cy="156.92" r="271.93" gradientUnits="userSpaceOnUse"> <stop offset=".13" stop-color="#ee3a94"/> <stop offset=".29" stop-color="#d0348f"/> <stop offset=".78" stop-color="#8a2c88"/> <stop offset="1" style="stop-color:#6F2A85"/> </radialGradient> </defs> <path d="M44.47,178.7c-1.48,0-2.83-0.81-3.53-2.1L13.3,125.86c-1.06-1.95-0.34-4.39,1.61-5.44 c1.95-1.07,4.38-0.35,5.45,1.6l23.99,44.04l23.47-45.98c1.01-1.97,3.44-2.75,5.41-1.75c1.97,1.02,2.76,3.43,1.75,5.41l-26.93,52.76 c-0.68,1.32-2.03,2.17-3.53,2.19C44.5,178.7,44.49,178.7,44.47,178.7z" fill="url(#vidaa-grad)"/> <path d="M85.03,180.71c-2.22,0-4.02-1.8-4.02-4.03 v-54.77c0-2.21,1.8-4.01,4.02-4.01c2.22,0,4.03,1.8,4.03,4.01v54.77C89.05,178.91,87.25,180.71,85.03,180.71z" fill="url(#vidaa-grad)"/> <path d="M136.63,180.71h-28.85 c-2.22,0-4.02-1.8-4.02-4.03v-54.77c0-2.21,1.8-4.01,4.02-4.01h25.78c0.32,0,0.66,0.04,0.98,0.13 c8.73,2.19,24.85,11.61,23.48,31.56c-1.67,24.22-19.32,30.64-20.07,30.9C137.52,180.63,137.08,180.71,136.63,180.71z M111.8,172.67 h24.04c2.59-1.17,13-6.87,14.16-23.63c1.17-16.94-14.1-22.25-16.98-23.1H111.8V172.67z" fill="url(#vidaa-grad)"/> <path d="M216.82,180.71 c-1.47,0-2.89-0.82-3.59-2.21l-23.92-47.34l-26.25,47.48c-1.08,1.94-3.51,2.64-5.47,1.57c-1.94-1.08-2.64-3.52-1.57-5.47 l29.93-54.13c0.72-1.29,2.05-2.08,3.59-2.07c1.49,0.03,2.84,0.88,3.52,2.2l27.35,54.13c1,1.99,0.21,4.41-1.78,5.4 C218.05,180.57,217.42,180.71,216.82,180.71z" fill="url(#vidaa-grad)"/> <path d="M283.16,182.1 c-1.47,0-2.87-0.82-3.58-2.21l-23.93-47.35l-26.25,47.48c-1.08,1.94-3.5,2.65-5.46,1.57s-2.64-3.52-1.57-5.47L252.3,122 c0.73-1.3,2.11-1.98,3.59-2.07c1.49,0.03,2.85,0.88,3.52,2.21l27.35,54.13c0.99,1.98,0.21,4.4-1.78,5.4 C284.4,181.95,283.78,182.1,283.16,182.1z" fill="url(#vidaa-grad)"/> </svg>
+                                 Vidaa
+                             </h4>
+                             <ul>
+                                 <li><span>4K Player</span> <a href="https://t.me/tvnetSupport">Learn More</a></li>
+                                 <li><span>ibo Player Pro</span> <a href="https://t.me/tvnetSupport">Learn More</a></li>
+                                 <li><span>IPTV Smarters Pro</span> <a href="https://t.me/tvnetSupport">Learn More</a></li>
+                             </ul>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Computer Apps Panel -->
+        <div id="computer" class="apps-tab-content">
+             <div class="apps-main-container">
+                <div class="apps-main-card">
+                     <div class="apps-sub-container">
+                        <div class="apps-sub-card">
+                            <h4>
+                                <svg class="device-icon-sub" viewBox="0 0 128 128"><path fill="#0078d4" d="M67.328 67.331h60.669V128H67.328zm-67.325 0h60.669V128H.003zM67.328 0h60.669v60.669H67.328zM.003 0h60.669v60.669H.003z" /></svg>
+                                Windows
+                            </h4>
+                            <ul>
+                                <li><span>4K Player</span> <a href="assets/Apps/4KPLAYER.Setup.1.2.2.exe">Download</a></li>
+                                <li><span>ibo Player Pro</span> <a href="assets/Apps/iboplayer pro v2.0.4.0.exe">Download</a></li>
+                                <li><span>IPTV Smarters Pro</span> <a href="">Coming Soon</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="apps-main-card">
+                     <div class="apps-sub-container">
+                        <div class="apps-sub-card">
+                            <h4>
+                                <svg class="device-icon-sub" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="url(#macos-grad)"/><defs><linearGradient id="macos-grad" x2="0" y1="100%"><stop offset="0" stop-color="#1e73f2"/><stop offset="1" stop-color="#19d3fd"/></linearGradient><linearGradient id="macos-grad-face" x2="0" y1="100%"><stop offset="0" stop-color="#dbe9f4"/><stop offset="1" stop-color="#f7f6f6"/></linearGradient></defs><path fill="url(#macos-grad-face)" d="M435.2 0H274.4c-21.2 49.2-59.2 129.6-60.8 283.4a9.9 9.9 0 0010 10.1h58.7a9.9 9.9 0 019.9 10.2A933.3 933.3 0 00311.3 512h123.9a76.8 76.8 0 0076.8-76.8V76.8A76.8 76.8 0 00435.2 0z"/><path fill="none" stroke="#000000" stroke-linecap="round" stroke-width="20" d="M371 149v34m-229-34v34m263.4 147.2a215.2 215.2 0 01-298.8 0"/></svg>
+                                MacOS
+                            </h4>
+                            <ul>
+                                <li><span>ZenIPTV Player</span> <a href="https://apps.apple.com/tr/app/zen-iptv-player/id6458223193" target="_blank">Download</a></li>
+                                <li><span>8K Player</span> <a href="assets/Apps/8k.PLAYER.OS-1.0.0.dmg">Download</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Apps Panel -->
+        <div id="mobile" class="apps-tab-content">
+            <div class="apps-main-container">
+                <div class="apps-main-card">
+                    <div class="apps-sub-container">
+                        <div class="apps-sub-card">
+                            <h4>
+                                 <svg class="device-icon-sub" viewBox="0 0 256 150"> <path fill="#34a853" d="M255.285 143.47c-.084-.524-.164-1.042-.251-1.56a128.1 128.1 0 0 0-12.794-38.288a128.8 128.8 0 0 0-23.45-31.86a129.2 129.2 0 0 0-22.713-18.005c.049-.08.09-.168.14-.25c2.582-4.461 5.172-8.917 7.755-13.38l7.576-13.068c1.818-3.126 3.632-6.26 5.438-9.386q.643-1.115 1.023-2.297a11.78 11.78 0 0 0-.36-8.188q-.32-.76-.743-1.472a11.7 11.7 0 0 0-4.08-4.064a11.85 11.85 0 0 0-5.005-1.61a12 12 0 0 0-2.218.02q-.912.094-1.814.33a11.74 11.74 0 0 0-7.154 5.467c-1.814 3.127-3.628 6.26-5.438 9.386l-7.576 13.069c-2.583 4.462-5.173 8.918-7.755 13.38c-.282.487-.567.973-.848 1.467q-.586-.237-1.172-.462c-14.24-5.43-29.688-8.4-45.836-8.4c-.442 0-.879 0-1.324.006c-14.357.143-28.152 2.64-41.022 7.12a119 119 0 0 0-4.42 1.642c-.262-.455-.532-.911-.79-1.367c-2.583-4.462-5.173-8.918-7.755-13.38l-7.576-13.07a3915 3915 0 0 1-5.439-9.386A11.74 11.74 0 0 0 48.5.048a11.7 11.7 0 0 0-5.01 1.612a11.7 11.7 0 0 0-4.077 4.063c-.281.474-.532.967-.742 1.473a11.8 11.8 0 0 0-.365 8.188c.259.786.594 1.554 1.023 2.296a3973 3973 0 0 1 5.439 9.386q3.793 6.535 7.58 13.069c2.582 4.462 5.168 8.918 7.75 13.38c.02.038.046.075.065.112A129 129 0 0 0 45.32 64.38a129.7 129.7 0 0 0-22.2 24.015a128 128 0 0 0-9.34 15.24a128.2 128.2 0 0 0-10.843 28.764a131 131 0 0 0-1.951 9.524c-.087.518-.167 1.042-.247 1.56A125 125 0 0 0 0 149.118h256q-.307-2.837-.734-5.636z" /><path fill="#fff" d="M194.59 113.712c5.122-3.41 5.867-11.3 1.661-17.62c-4.203-6.323-11.763-8.682-16.883-5.273c-5.122 3.41-5.868 11.3-1.662 17.621c4.203 6.322 11.764 8.682 16.883 5.272m-116.071-5.25c4.206-6.321 3.46-14.21-1.662-17.62c-5.123-3.41-12.68-1.05-16.886 5.27c-4.203 6.323-3.458 14.212 1.662 17.622c5.122 3.41 12.683 1.05 16.886-5.272" /></svg>
+                                 Android
+                            </h4>
+                            <ul>
+                                <li><span>4K Player</span> <a href="#">Download</a></li>
+                                <li><span>ibo Player Pro</span> <a href="#">Download</a></li>
+                                <li><span>IPTV Smarters Pro</span> <a href="#">Download</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                 <div class="apps-main-card">
+                     <div class="apps-sub-container">
+                         <div class="apps-sub-card">
+                             <h4>
+                                 <svg class="device-icon-sub" viewBox="0 0 24 24"><path fill="#e6e6e6" d="M17.05 20.28c-.98.95-2.05.8-3.08.35c-1.09-.46-2.09-.48-3.24 0c-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8c1.18-.24 2.31-.93 3.57-.84c1.51.12 2.65.72 3.4 1.8c-3.12 1.87-2.38 5.98.48 7.13c-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25c.29 2.58-2.34 4.5-3.74 4.25" /></svg>
+                                 iOS
+                             </h4>
+                             <ul>
+                                 <li><span>ZenIPTV Player</span> <a href="https://apps.apple.com/tr/app/zen-iptv-player/id6458223193" target="_blank">Download</a></li>
+                                 <li><span>4K Player</span> <a href="#">Download</a></li>
+                                 <li><span>ibo Player Pro</span> <a href="#">Download</a></li>
+                                 <li><span>IPTV Smarters Pro</span> <a href="#">Download</a></li>
+                             </ul>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer-section" id="Contact">
+        <div class="footer-container">
+            <div class="footer-logo">
+                 <svg class="logo-footer" viewBox="0 0 954.56 192.73">
+                    <g>
+                        <path class="logo-cls-1"
+                            d="M661.56,192.73h-46.83l-78.32-118.57v118.57h-46.83V.5h46.83l78.32,119.12V.5h46.83v192.23Z" />
+                        <path class="logo-cls-1"
+                            d="M728.65,38.02v38.88h62.71v36.15h-62.71v42.17h70.92v37.52h-117.75V.5h117.75v37.52h-70.92Z" />
+                        <path class="logo-cls-1" d="M954.56.5v37.52h-50.93v154.72h-46.83V38.02h-50.93V.5h148.69Z" />
+                    </g>
+                    <g>
+                        <path class="logo-cls-2"
+                            d="M0,48.62L36.62,0h162.95c16.68,0,32.33,8.08,42,21.68l71.31,100.33c1.22,1.72,3.79,1.71,5-.02L403.38,0h69.23l-120.53,173.84c-17.25,24.88-53.91,25.26-71.67.74l-81.51-112.53c-6.2-8.56-16.14-13.63-26.71-13.62l-172.19.19Z" />
+                        <rect class="logo-cls-2" x="87" y="64.92" width="61.7" height="127.81" />
+                    </g>
+                </svg>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <a href="#About">About</a>
+                <a href="#Subscribe">Subscribe</a>
+                <a href="#Apps">Apps</a>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact Us</h4>
+                 <!-- <a href="mailto:info@tvnet.com" class="contact-item">
+                    <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                     <span>info@tvnet.com</span>
+                 </a> -->
+                 <a href="https://t.me/tvnetus" target="_blank" class="contact-item">
+                     <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+                        <defs><linearGradient id="telegram-grad" x1="50%" x2="50%" y1="0%" y2="100%"><stop offset="0%" stop-color="#2aabee" /><stop offset="100%" stop-color="#229ed9" /></linearGradient></defs>
+                        <path fill="url(#telegram-grad)" d="M128 0C94.06 0 61.48 13.494 37.5 37.49A128.04 128.04 0 0 0 0 128c0 33.934 13.5 66.514 37.5 90.51C61.48 242.506 94.06 256 128 256s66.52-13.494 90.5-37.49c24-23.996 37.5-56.576 37.5-90.51s-13.5-66.514-37.5-90.51C194.52 13.494 161.94 0 128 0" />
+                        <path fill="#fff" d="M57.94 126.648q55.98-24.384 74.64-32.152c35.56-14.786 42.94-17.354 47.76-17.441c1.06-.017 3.42.245 4.96 1.49c1.28 1.05 1.64 2.47 1.82 3.467c.16.996.38 3.266.2 5.038c-1.92 20.24-10.26 69.356-14.5 92.026c-1.78 9.592-5.32 12.808-8.74 13.122c-7.44.684-13.08-4.912-20.28-9.63c-11.26-7.386-17.62-11.982-28.56-19.188c-12.64-8.328-4.44-12.906 2.76-20.386c1.88-1.958 34.64-31.748 35.26-34.45c.08-.338.16-1.598-.6-2.262c-.74-.666-1.84-.438-2.64-.258c-1.14.256-19.12 12.152-54 35.686c-5.1 3.508-9.72 5.218-13.88 5.128c-4.56-.098-13.36-2.584-19.9-4.708c-8-2.606-14.38-3.984-13.82-8.41c.28-2.304 3.46-4.662 9.52-7.072" />
+                    </svg>
+                     <span>@tvnetus</span>
+                 </a>
+                 <a href="https://t.me/tvnetSupport" target="_blank" class="contact-item"> <!-- Add link later -->
+                     <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+                        <defs><linearGradient id="telegram-grad-2" x1="50%" x2="50%" y1="0%" y2="100%"><stop offset="0%" stop-color="#2aabee" /><stop offset="100%" stop-color="#229ed9" /></linearGradient></defs>
+                        <path fill="url(#telegram-grad-2)" d="M128 0C94.06 0 61.48 13.494 37.5 37.49A128.04 128.04 0 0 0 0 128c0 33.934 13.5 66.514 37.5 90.51C61.48 242.506 94.06 256 128 256s66.52-13.494 90.5-37.49c24-23.996 37.5-56.576 37.5-90.51s-13.5-66.514-37.5-90.51C194.52 13.494 161.94 0 128 0" />
+                        <path fill="#fff" d="M57.94 126.648q55.98-24.384 74.64-32.152c35.56-14.786 42.94-17.354 47.76-17.441c1.06-.017 3.42.245 4.96 1.49c1.28 1.05 1.64 2.47 1.82 3.467c.16.996.38 3.266.2 5.038c-1.92 20.24-10.26 69.356-14.5 92.026c-1.78 9.592-5.32 12.808-8.74 13.122c-7.44.684-13.08-4.912-20.28-9.63c-11.26-7.386-17.62-11.982-28.56-19.188c-12.64-8.328-4.44-12.906 2.76-20.386c1.88-1.958 34.64-31.748 35.26-34.45c.08-.338.16-1.598-.6-2.262c-.74-.666-1.84-.438-2.64-.258c-1.14.256-19.12 12.152-54 35.686c-5.1 3.508-9.72 5.218-13.88 5.128c-4.56-.098-13.36-2.584-19.9-4.708c-8-2.606-14.38-3.984-13.82-8.41c.28-2.304 3.46-4.662 9.52-7.072" />
+                    </svg>
+                     <span>@tvnetSupport</span>
+                 </a>
+            </div>
+             <div class="footer-legal">
+                <h4>Legal</h4>
+                <a href="javascript:void(0);" id="privacy-link">Privacy Policy</a>
+                <a href="javascript:void(0);" id="terms-link">Terms of Service</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 TV NET. All rights reserved. | Albuquerque, NM 🇺🇸</p>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div id="privacy-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Privacy Policy</h2>
+            <p>Your privacy is important to us. It is TV NET's policy to respect your privacy regarding any information we may collect from you across our website, and other sites we own and operate.</p>
+            <p>We only ask for personal information when we truly need it to provide a service to you. We collect it by fair and lawful means, with your knowledge and consent. We also let you know why we’re collecting it and how it will be used.</p>
+            <p>We only retain collected information for as long as necessary to provide you with your requested service. What data we store, we’ll protect within commercially acceptable means to prevent loss and theft, as well as unauthorized access, disclosure, copying, use or modification.</p>
+            <p>We don’t share any personally identifying information publicly or with third-parties, except when required to by law.</p>
+        </div>
+    </div>
+
+    <div id="terms-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Terms of Service</h2>
+            <p>By accessing the website at TV NET, you are agreeing to be bound by these terms of service, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws.</p>
+            <p>Permission is granted to temporarily download one copy of the materials (information or software) on TV NET's website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:</p>
+            <ul>
+                <li>modify or copy the materials;</li>
+                <li>use the materials for any commercial purpose, or for any public display (commercial or non-commercial);</li>
+                <li>attempt to decompile or reverse engineer any software contained on TV NET's website;</li>
+            </ul>
+            <p>This license shall automatically terminate if you violate any of these restrictions and may be terminated by TV NET at any time.</p>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
+
