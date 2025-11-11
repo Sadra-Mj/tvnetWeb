@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const channelsPerPage = 100;
 
     // Fetch and parse the M3U file
-    fetch('channels.m3u')
+    fetch('https://files.tvnet.online/channels.m3u')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok. Make sure channels.m3u is in the root directory.');
