@@ -10,11 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentPage = 1;
     const channelsPerPage = 100;
 
-    // Fetch and parse the M3U file
+    // Fetch and parse the M3U file from your Cloudflare R2 URL
     fetch('https://pub-655bdee9cdba4ce386b03ce866cef28a.r2.dev/channels.m3u')
         .then(response => {
             if (!response.ok) {
-                throw new Error('Network response was not ok. Make sure channels.m3u is in the root directory.');
+                throw new Error('Network response was not ok. Failed to fetch from Cloudflare R2.');
             }
             return response.text();
         })
@@ -159,4 +159,3 @@ document.addEventListener('DOMContentLoaded', () => {
         renderPage(1);
     });
 });
-
