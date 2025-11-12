@@ -1,161 +1,139 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const categoryList = document.getElementById('category-list');
-    const channelGrid = document.getElementById('channel-grid');
-    const searchBar = document.getElementById('search-bar');
-    const paginationContainer = document.getElementById('pagination');
+const basePath = "./countries/";
+const channelContainer = document.querySelector(".channel-list");
+const countryContainer = document.querySelector(".categories");
+const searchInput = document.querySelector("input[type='text']");
 
-    let allChannels = [];
-    let categories = {};
-    let currentChannelList = [];
-    let currentPage = 1;
-    const channelsPerPage = 100;
+let countryIndex = {};
+let filteredCountries = [];
 
-    // Fetch and parse the M3U file from your Cloudflare R2 URL
-    fetch('https://pub-655bdee9cdba4ce386b03ce866cef28a.r2.dev/channels.m3u')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok. Failed to fetch from Cloudflare R2.');
-            }
-            return response.text();
-        })
-        .then(data => {
-            allChannels = parseM3U(data);
-            currentChannelList = allChannels;
-            categories = categorizeChannels(allChannels);
-            displayCategories(categories);
-            renderPage(1);
-        })
-        .catch(error => {
-            channelGrid.innerHTML = `<p class="loading-message" style="color: #ff4d4d;">${error.message}</p>`;
-            console.error('Error fetching or parsing M3U file:', error);
-        });
+async function loadCountryIndex() {
+  try {
+    const res = await fetch("./countryIndex.json");
+    countryIndex = await res.json();
 
-    function parseM3U(data) {
-        const lines = data.split('\n');
-        const channels = [];
-        let currentChannel = {};
+    filteredCountries = Object.keys(countryIndex)
+      .filter(
+        (name) =>
+          !/movie|series|vod|netflix|disney|hbo|paramount|film|cinema|drama|kids|cartoon|anime|marvel|pixar|universal|documentary|(\b19\d{2}\b)|(\b20\d{2}\b)/i.test(
+            name
+          ) &&
+          !/^(test|backup)$/i.test(name)
+      )
+      .sort();
+    renderCountryList(filteredCountries);
+  } catch (err) {
+    console.error("Failed to load index:", err);
+    countryContainer.innerHTML = "<p>❌ Could not load country index.</p>";
+  }
+}
 
-        for (const line of lines) {
-            if (line.startsWith('#EXTINF:')) {
-                const groupTitleMatch = line.match(/group-title="([^"]*)"/);
-                const nameMatch = line.match(/,(.*)/);
-                
-                currentChannel.name = nameMatch ? nameMatch[1].trim() : 'Unnamed Channel';
-                currentChannel.group = groupTitleMatch ? groupTitleMatch[1] : 'Uncategorized';
+function renderCountryList(countries) {
+  countryContainer.innerHTML = "";
+  countries.forEach((name) => {
+    const btn = document.createElement("button");
+    btn.textContent = name;
+    btn.className = "country-btn";
+    btn.onclick = () => loadCountryChannels(name);
+    countryContainer.appendChild(btn);
+  });
+}
 
-            } else if (line.trim().startsWith('http')) {
-                currentChannel.url = line.trim();
-                channels.push(currentChannel);
-                currentChannel = {};
-            }
+async function loadCountryChannels(countryName) {
+  const files = countryIndex[countryName];
+  if (!files) return;
+
+  channelContainer.innerHTML = `<h2>${countryName}</h2><p>Loading ${files.length} file(s)...</p>`;
+  const allChannels = [];
+
+  for (const file of files) {
+    const url = `${basePath}${file}`;
+    try {
+      const res = await fetch(url);
+      if (!res.ok) continue;
+      const text = await res.text();
+
+      const lines = text.split(/\r?\n/);
+      let current = {};
+      for (const line of lines) {
+        if (line.startsWith("#EXTINF:")) {
+          const name = line.split(",").pop().trim();
+
+          // Detect the group-title (e.g., Live, Movies, Series)
+          const match = line.match(/group-title="([^"]+)"/i);
+          const group = match ? match[1].toLowerCase() : "";
+
+          // Store metadata
+          current = { name, group };
+        } else if (line.startsWith("http")) {
+          // Skip .mkv links
+          if (line.trim().toLowerCase().endsWith(".mkv")) {
+            current = {};
+            continue;
+          }
+
+          const isLikelyLive =
+            current.group.includes("live") ||
+            current.group.includes("tv") ||
+            current.group.includes("asia") ||
+            current.group.includes("premium") ||
+            current.group.includes("uhd") ||
+            current.group.includes("4k") ||
+            /^[A-Z]{2}\|/.test(current.group.toUpperCase()) ||
+            (!current.group &&
+              !line.toLowerCase().includes("movie") &&
+              !line.toLowerCase().includes("series") &&
+              !line.toLowerCase().includes("vod"));
+
+          if (isLikelyLive) {
+            current.url = line;
+            allChannels.push(current);
+          }
+
+          current = {};
         }
-        return channels;
+      }
+    } catch (e) {
+      console.error("Error reading", file, e);
     }
+  }
 
-    function categorizeChannels(channels) {
-        const categories = { 'All Channels': [...channels] }; // Create a copy
-        channels.forEach(channel => {
-            const group = channel.group;
-            if (!categories[group]) {
-                categories[group] = [];
-            }
-            categories[group].push(channel);
-        });
-        return categories;
-    }
-    
-    function displayCategories(categories) {
-        categoryList.innerHTML = '';
-        Object.keys(categories).sort().forEach(categoryName => {
-            const li = document.createElement('li');
-            li.textContent = `${categoryName} (${categories[categoryName].length})`;
-            li.dataset.category = categoryName;
-            if (categoryName === 'All Channels') {
-                li.classList.add('active');
-            }
-            li.addEventListener('click', () => {
-                document.querySelectorAll('#category-list li').forEach(el => el.classList.remove('active'));
-                li.classList.add('active');
-                currentChannelList = categories[categoryName];
-                searchBar.value = '';
-                renderPage(1);
-            });
-            categoryList.appendChild(li);
-        });
-    }
+  // If all channels were .mkv or none remain, skip rendering this folder
+  if (allChannels.length === 0) {
+    console.log(`⏩ Skipped ${countryName} (only .mkv or empty)`);
+    return;
+  }
 
-    function displayChannels(channels) {
-        channelGrid.innerHTML = '';
-        if (channels.length === 0) {
-            channelGrid.innerHTML = '<p class="loading-message">No channels found.</p>';
-            return;
-        }
-        channels.forEach(channel => {
-            const card = document.createElement('div');
-            card.className = 'channel-card';
-            
-            card.innerHTML = `<div class="channel-name">${channel.name}</div>`;
-            channelGrid.appendChild(card);
-        });
-    }
+  renderChannelList(allChannels, countryName);
+}
 
-    function setupPagination(totalChannels) {
-        paginationContainer.innerHTML = '';
-        const totalPages = Math.ceil(totalChannels / channelsPerPage);
+function renderChannelList(channels, country) {
+  channelContainer.innerHTML = `<h2>${country}</h2>`;
+  if (!channels.length) {
+    channelContainer.innerHTML += "<p>No channels found.</p>";
+    return;
+  }
 
-        if (totalPages <= 1) return;
+  const list = document.createElement("div");
+  list.className = "channel-grid";
+  channels.forEach((ch) => {
+    const div = document.createElement("div");
+    div.className = "channel-item";
+    div.innerHTML = `
+      <strong>${ch.name}</strong><br>
+      <a href="${ch.url}" target="_blank">${ch.url}</a>
+    `;
+    list.appendChild(div);
+  });
+  channelContainer.appendChild(list);
+}
 
-        const prevButton = document.createElement('button');
-        prevButton.textContent = 'Previous';
-        prevButton.className = 'pagination-btn';
-        prevButton.disabled = currentPage === 1;
-        prevButton.addEventListener('click', () => {
-            if (currentPage > 1) {
-                renderPage(currentPage - 1);
-            }
-        });
-
-        const pageInfo = document.createElement('span');
-        pageInfo.className = 'page-info';
-        pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
-
-        const nextButton = document.createElement('button');
-        nextButton.textContent = 'Next';
-        nextButton.className = 'pagination-btn';
-        nextButton.disabled = currentPage === totalPages;
-        nextButton.addEventListener('click', () => {
-            if (currentPage < totalPages) {
-                renderPage(currentPage + 1);
-            }
-        });
-
-        paginationContainer.appendChild(prevButton);
-        paginationContainer.appendChild(pageInfo);
-        paginationContainer.appendChild(nextButton);
-    }
-
-    function renderPage(page) {
-        currentPage = page;
-        const start = (page - 1) * channelsPerPage;
-        const end = start + channelsPerPage;
-        const channelsToDisplay = currentChannelList.slice(start, end);
-
-        displayChannels(channelsToDisplay);
-        setupPagination(currentChannelList.length);
-    }
-    
-    searchBar.addEventListener('input', (e) => {
-        const searchTerm = e.target.value.toLowerCase();
-        
-        // Always search from the 'All Channels' list for consistency
-        const allChannelsList = categories['All Channels'] || [];
-        
-        currentChannelList = allChannelsList.filter(channel => 
-            channel.name.toLowerCase().includes(searchTerm)
-        );
-        
-        document.querySelectorAll('#category-list li').forEach(el => el.classList.remove('active'));
-        
-        renderPage(1);
-    });
+// Search bar filters countries
+searchInput.addEventListener("input", (e) => {
+  const term = e.target.value.toLowerCase();
+  const result = Object.keys(countryIndex).filter((c) =>
+    c.toLowerCase().includes(term)
+  );
+  renderCountryList(result);
 });
+
+loadCountryIndex();
