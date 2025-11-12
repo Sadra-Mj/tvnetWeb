@@ -1,0 +1,21 @@
+#EXTM3U
+#EXTINF:-1 tvg-id="" tvg-name="#### NOTICIAS ####" tvg-logo="" group-title="PT| NOTICIAS",#### NOTICIAS ####
+http://thank36072.cdngold.me:80/myself/5ve7hxflp7/647694
+#EXTINF:-1 tvg-id="Cmtv.pt" tvg-name="PT: CMTV" tvg-logo="http://icon-tmdb.me/stalker_portal/misc/logos/320/11185.jpg?40305" group-title="PT| NOTICIAS",PT: CMTV
+http://thank36072.cdngold.me:80/myself/5ve7hxflp7/386472
+#EXTINF:-1 tvg-id="Cmtv.pt" tvg-name="PT: CMTV HD" tvg-logo="http://icon-tmdb.me/stalker_portal/misc/logos/320/11185.jpg?40305" group-title="PT| NOTICIAS",PT: CMTV HD
+http://thank36072.cdngold.me:80/myself/5ve7hxflp7/386471
+#EXTINF:-1 tvg-id="" tvg-name="PT: CNN PT HD" tvg-logo="http://icon-tmdb.me/stalker_portal/misc/logos/320/751.png?8569" group-title="PT| NOTICIAS",PT: CNN PT HD
+http://thank36072.cdngold.me:80/myself/5ve7hxflp7/386469
+#EXTINF:-1 tvg-id="" tvg-name="PT: CNN PT" tvg-logo="http://icon-tmdb.me/stalker_portal/misc/logos/320/751.png?8569" group-title="PT| NOTICIAS",PT: CNN PT
+http://thank36072.cdngold.me:80/myself/5ve7hxflp7/386470
+#EXTINF:-1 tvg-id="" tvg-name="PT: EURONEWS" tvg-logo="http://icon-tmdb.me/stalker_portal/misc/logos/320/12044.jpg?18015" group-title="PT| NOTICIAS",PT: EURONEWS
+http://thank36072.cdngold.me:80/myself/5ve7hxflp7/386455
+#EXTINF:-1 tvg-id="GloboNow.pt" tvg-name="PT: GLOBO NOW 4K" tvg-logo="http://icon-tmdb.me/stalker_portal/misc/logos/320/11187.jpg?98368" group-title="PT| NOTICIAS",PT: GLOBO NOW 4K
+http://thank36072.cdngold.me:80/myself/5ve7hxflp7/386435
+#EXTINF:-1 tvg-id="TpaInternational.pt" tvg-name="PT: TPA" tvg-logo="http://icon-tmdb.me/stalker_portal/misc/logos/320/11193.png?73485" group-title="PT| NOTICIAS",PT: TPA
+http://thank36072.cdngold.me:80/myself/5ve7hxflp7/386364
+#EXTINF:-1 tvg-id="SicNoticias.pt" tvg-name="PT: SIC NOTICIAS" tvg-logo="http://icon-tmdb.me/stalker_portal/misc/logos/320/11169.png?54155" group-title="PT| NOTICIAS",PT: SIC NOTICIAS
+http://thank36072.cdngold.me:80/myself/5ve7hxflp7/386387
+#EXTINF:-1 tvg-id="SicNoticias.pt" tvg-name="PT: SIC NOTICIAS HD" tvg-logo="http://icon-tmdb.me/stalker_portal/misc/logos/320/11169.png?54155" group-title="PT| NOTICIAS",PT: SIC NOTICIAS HD
+http://thank36072.cdngold.me:80/myself/5ve7hxflp7/386386
